@@ -15,10 +15,17 @@
             background-size: cover;
             background-position: center;
         }
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.active {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
+
     <nav class="bg-white shadow-md py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <div class="text-2xl font-bold text-pink-500">Little Joy</div>
@@ -29,14 +36,24 @@
                 <a href="#testimonials" class="text-gray-800 hover:text-pink-500">Testimonials</a>
                 <a href="#contact" class="text-gray-800 hover:text-pink-500">Contact</a>
             </div>
-            <button class="md:hidden focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden">
+            <div class="px-2 pt-2 pb-4 space-y-1">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-pink-500 hover:bg-pink-50">Home</a>
+                <a href="#products" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-pink-500 hover:bg-pink-50">Products</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-pink-500 hover:bg-pink-50">About</a>
+                <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-pink-500 hover:bg-pink-50">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:text-pink-500 hover:bg-pink-50">Contact</a>
+            </div>
+        </div>
     </nav>
-
     <!-- Hero Section -->
     <section id="home" class="hero-pattern py-20 md:py-32">
         <div class="container mx-auto px-6 text-center">
@@ -354,5 +371,23 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
